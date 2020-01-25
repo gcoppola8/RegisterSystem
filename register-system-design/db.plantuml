@@ -1,0 +1,18 @@
+@startuml
+
+Entity USER {
+    + id : number
+    + username : varchar2(255)
+    + password : varchar2(255)
+    + registered_on : timestamp
+}
+
+Entity ACCESS_LOGS {
+    + id : number
+    + user_id : number
+    + access_on : timestamp
+}
+
+ACCESS_LOGS "1" --- "0..*"  USER
+
+@enduml

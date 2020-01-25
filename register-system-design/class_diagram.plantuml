@@ -1,0 +1,64 @@
+@startuml
+
+class AccessController {
+    + RegisterResponse register(RegisterRequest req)
+    + LoginResponse login(LoginRequest req)
+}
+
+class AdminController {
+    + List<User> getAllUsers()
+    + DeleteResponse deleteUser(DeleteRequest req)
+}
+
+class UserRequest {
+    * String username
+    * String password
+}
+
+class RegisterRequest extends UserRequest {
+
+}
+
+class LoginRequest extends UserRequest {
+
+}
+
+class RegisterResponse {
+    - String message
+    - String registeredOn
+}
+
+class LoginResponse {
+    - String message
+    - String token 
+    - String lastLogin 
+}
+
+class DeleteRequest {
+    - String username
+}
+
+class DeleteResponse {
+    - String message
+}
+
+class AccessService {
+    + void registerUser(String username, String password)
+    + String loginUser(String username, String password)
+}
+
+class UserService {
+    + void findAll()
+    + void deleteUserByUsername(String username)
+}
+
+AdminController <-- UserService
+AccessController <-- AccessService
+DeleteRequest -- AdminController
+DeleteResponse -- AdminController
+
+RegisterResponse -- AccessController
+LoginResponse -- AccessController
+UserRequest -- AccessController
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+:User: 
+:Admin User/\nAdmin System: as :Admin:
+
+(Register)
+(Login)
+(List Users)
+(Delete User)
+
+:User: -> (Register)
+:User: -> (Login)
+
+(List Users) <- :Admin:  
+(Delete User) <- :Admin: 
+
+
+@enduml
