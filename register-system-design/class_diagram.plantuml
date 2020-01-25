@@ -48,10 +48,20 @@ class AccessService {
 }
 
 class UserService {
-    + void findAll()
+    + List<User> findAll()
     + void deleteUserByUsername(String username)
 }
 
+class User {
+    - int id
+    - String username
+    - String password
+    - String registeredOn
+}
+
+
+User -- AdminController
+User -- UserService
 AdminController <-- UserService
 AccessController <-- AccessService
 DeleteRequest -- AdminController
