@@ -1,70 +1,68 @@
 @startuml
 
-class AccessController {
-    + RegisterResponse register(RegisterRequest req)
-    + LoginResponse login(LoginRequest req)
+package rest {
+    class AccessController {
+        + RegisterResponse register(RegisterRequest req)
+        + LoginResponse login(LoginRequest req)
+    }
+
+    class UserRequest {
+        * String username
+        * String password
+    }
+
+    class RegisterRequest extends UserRequest {
+
+    }
+
+    class LoginRequest extends UserRequest {
+
+    }
+
+    class RegisterResponse {
+        - String message
+        - String registeredOn
+    }
+
+    class LoginResponse {
+        - String message
+        - String token
+        - String lastLogin
+    }
+
+    class AccessService {
+        + void registerUser(String username, String password)
+        + String loginUser(String username, String password)
+    }
 }
 
-class AdminController {
-    + List<User> getAllUsers()
-    + DeleteResponse deleteUser(DeleteRequest req)
+package console {
+    class AdminController {
+        + List<User> getAllUsers()
+        + DeleteResponse deleteUser(String usernameToDelete)
+    }
+
+    class UserService {
+        + List<User> findAll()
+        + void deleteUserByUsername(String username)
+    }
+
+    class DeleteResponse {
+        - String message
+    }
+
+    class User {
+        - int id
+        - String username
+        - String password
+        - String registeredOn
+    }
 }
-
-class UserRequest {
-    * String username
-    * String password
-}
-
-class RegisterRequest extends UserRequest {
-
-}
-
-class LoginRequest extends UserRequest {
-
-}
-
-class RegisterResponse {
-    - String message
-    - String registeredOn
-}
-
-class LoginResponse {
-    - String message
-    - String token 
-    - String lastLogin 
-}
-
-class DeleteRequest {
-    - String username
-}
-
-class DeleteResponse {
-    - String message
-}
-
-class AccessService {
-    + void registerUser(String username, String password)
-    + String loginUser(String username, String password)
-}
-
-class UserService {
-    + List<User> findAll()
-    + void deleteUserByUsername(String username)
-}
-
-class User {
-    - int id
-    - String username
-    - String password
-    - String registeredOn
-}
-
 
 User -- AdminController
 User -- UserService
 AdminController <-- UserService
 AccessController <-- AccessService
-DeleteRequest -- AdminController
 DeleteResponse -- AdminController
 
 RegisterResponse -- AccessController
