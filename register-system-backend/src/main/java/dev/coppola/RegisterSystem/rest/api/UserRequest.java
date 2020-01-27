@@ -9,6 +9,7 @@ public class UserRequest {
     @Size(max = 255)
     protected String username;
 
-    @Size(max = 255)
+    @Size(min = 8, max = 255)
     protected String password;
+
 }
