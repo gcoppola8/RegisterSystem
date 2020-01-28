@@ -41,6 +41,8 @@ http://localhost:8080/swagger-ui.html it is a page with the endpoints
  available and gives the possibility to test them directly from that page, without using tools like Postman or similar.
 http://localhost:8080/v2/api-docs returns the json file to import in SWAGGER editor
 
+at the address http://localhost:3000 it is possible to access the admin console.
+
 
 ## Author
 **Gennaro Coppola** <coppola612@gmail.com>
