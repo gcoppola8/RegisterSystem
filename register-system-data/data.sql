@@ -3,10 +3,10 @@ DELIMITER //
 create database app_db // 
 use app_db //
 
-DROP TABLE `access_logs` //
-DROP TABLE `user` //
+DROP TABLE if exists `access_logs` //
+DROP TABLE if exists `user` //
 
-CREATE TABLE `user` (
+CREATE TABLE app_db.`user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL UNIQUE,
   `password` varchar(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `user` (
 
 //
 
-CREATE TABLE `access_logs` (
+CREATE TABLE app_db.`access_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `access_on` timestamp NULL DEFAULT NULL,

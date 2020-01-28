@@ -18,20 +18,14 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /docker-entrypoint-initdb.d:register-system-data
+      - ./register-system-data:/docker-entrypoint-initdb.d
     environment:
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: "root"
       
   frontend:
-    image: node:13
-    user: "node"
-    working_dir: /home/node/app
-    volumes:
-    - ./register-system-admin:/home/node/app
+    build: register-system-admin
     depends_on:
       - db
       - backend
     ports:
       - "3000:3000"
-    command: "npm start"
-    
