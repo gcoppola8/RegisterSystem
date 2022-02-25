@@ -1,3 +1,6 @@
+A lot of time ago, for a job interview I have been asked to realize in a couple of days a register system. 
+Since then I didn't touch this and don't plan to touch it in the future.
+
 #Register System
 
 ## Project structure
